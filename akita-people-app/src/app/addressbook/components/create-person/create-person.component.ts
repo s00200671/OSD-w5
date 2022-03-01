@@ -3,7 +3,9 @@ import { PeopleService } from '../../services/people.service';
 import { People } from '../../model/people.model';
 import { Component, OnInit } from '@angular/core';
 import * as uuid from 'uuid';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
+import { PeopleStore } from '../../store/people.store';
+import { Subscriber, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-person',
@@ -11,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class CreatePersonComponent  {
 
-  constructor(private peopleService: PeopleService, private router: Router) { }
+  createPersonSub: Subscription;
+
+  constructor(private peopleService: PeopleService, private store: PeopleStore, private router: Router) { }
 
 
   onSubmit(submittedForm: { value: { lastname: any; firstname: any; phone: any; }; invalid: any; }) {
@@ -19,7 +23,7 @@ export class CreatePersonComponent  {
       return;
     }
     const people: People = {id: uuid.v4(), lastname: submittedForm.value.lastname,firstname: submittedForm.value.firstname, phone: submittedForm.value.phone};
-    this.peopleService.createPerson(people).subscribe(result => {
+    this.createPersonSub = this.peopleService.createPerson(people).subscribe(result => {
       this.router.navigateByUrl('/people');
     });
   }

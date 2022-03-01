@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/akita-people-app",
+            "outputPath": "dist/people-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,11 +69,11 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "akita-people-app:build:production"
+              "browserTarget": "people-app:build:production"
             },
             "development": {
 
-              "browserTarget": "akita-people-app:build:development"
+              "browserTarget": "people-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "akita-people-app:build"
+            "browserTarget": "people-app:build"
           }
         },
         "test": {
@@ -104,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "akita-people-app"
+  "defaultProject": "people-app"
 }
